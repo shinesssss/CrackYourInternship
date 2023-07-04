@@ -1,0 +1,62 @@
+class Solution {
+public:
+int height(TreeNode *root){
+    if(root==NULL){
+        return 0;
+    }
+    int l=height(root->left);
+    int r=height(root->right);
+    return max(l,r)+1;
+}
+void diam(TreeNode *root,int &maxi){
+    if(root==NULL){
+        return;
+    }
+    int lh=height(root->left);
+    int rh=height(root->right);
+    maxi=max(maxi,lh+rh);
+    diam(root->left,maxi);
+    diam(root->right,maxi);
+}
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(root==NULL){
+            return 0;
+        }
+        int maxi=0;
+        diam(root,maxi);
+        return maxi;
+    }
+};
+//TC:0(N^2) //VISITING EVERY NODE TWICE
+//SC:0(N)// SKEW TREE(WORST CASE)
+//BETTER SOLUTION
+class Solution {
+public:
+int height(TreeNode *root,int &maxi){
+    if(root==NULL){
+        return 0;
+    }
+    int l=height(root->left,maxi);
+    int r=height(root->right,maxi);
+    maxi=max(maxi,l+r);
+    return max(l,r)+1;
+}
+// void diam(TreeNode *root,int &maxi){
+//     if(root==NULL){
+//         return;
+//     }
+//     int lh=height(root->left);
+//     int rh=height(root->right);
+//     maxi=max(maxi,lh+rh);
+//     diam(root->left,maxi);
+//     diam(root->right,maxi);
+// }
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(root==NULL){
+            return 0;
+        }
+        int maxi=0;
+        height(root,maxi);
+        return maxi;
+    }
+};
