@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int reverse(int x) {
+         long long total = 0; // Variable to store the reversed number
+        
+        // Reversing the digits of the input number
+        while (x != 0) {
+            long long number = (long long)x % 10; // Extracting the last digit of x
+            total = (total * 10) + number; // Appending the digit to the total in reverse order
+            x = x / 10; // Removing the last digit from x
+        }
+        
+        // Checking for overflow or underflow
+        if (total > INT_MAX || total < INT_MIN) {
+            return 0; // Returning 0 if the reversed number exceeds the range of a 32-bit signed integer
+        }
+    
+    return total;
+    }
+    
+};
