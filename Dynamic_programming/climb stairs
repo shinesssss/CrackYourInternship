@@ -1,0 +1,57 @@
+//since we have to calculate number of distinct sways 
+//so the approach that comes in mind is of recursion
+//so that we can try all the ways to calculate 
+//at a time u can either climb one step or climb 2 steps
+//recursive code
+class Solution {
+public:
+    int climbStairs(int n) {
+        if(n==1 || n==2){
+            return n;
+        }
+        int m=climbStairs(n-1);
+        int p=climbStairs(n-2);
+        return m+p;
+    }
+};
+//tc:0(n^2)
+sc:0(n) //stack space
+//MEMOIZATION
+class Solution {
+public:
+    int climb(int n, vector<int>& dp) {
+        if (n == 1 || n == 2) {
+            return n;
+        }
+        if (dp[n] != -1) {
+            return dp[n];
+        }
+        int m = climb(n - 1, dp);
+        int p = climb(n - 2, dp);
+        return dp[n] = m + p;
+    }
+
+    int climbStairs(int n) {
+        vector<int> dp(n + 1, -1); // Initialize the dp vector with -1
+        int ans = climb(n, dp); // Call the helper function
+        return ans;
+    }
+};
+
+//TABULATION
+ int climbStairs(int n) {
+    
+       if (n <= 2) {
+            return n;
+        }
+
+        vector<int> dp(n + 1);
+        dp[1] = 1;
+        dp[2] = 2;
+
+        for (int i = 3; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+
+        return dp[n];
+    }
