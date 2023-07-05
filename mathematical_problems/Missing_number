@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n=nums.size();
+        int cs=0;
+        int as=0;
+        for(int i=0;i<n;i++){
+            cs=cs+nums[i];
+        }
+        for(int i=0;i<=n;i++){
+            as=as+i;
+        }
+        return as-cs;
+    }
+};
+//TIME COMPLEXITY:0(N)
+//SPACE COMPLEXITY:O(1)
