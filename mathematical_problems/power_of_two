@@ -1,0 +1,23 @@
+class Solution {
+public:
+int count(int n){
+    int c=0;
+    while(n>0){
+        if(n&1==1){
+            c++;
+        }
+        n=n>>1;
+    }
+    return c;
+}
+    bool isPowerOfTwo(int n) {
+        //to check how many there are number of set bits
+        int ans=count(n);
+        if(ans==1){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+};
